@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.iakull.fithelper.ui.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_progress">
+        <action
+            android:id="@+id/to_createTrainingDialog"
+            app:destination="@id/createTrainingDialog" />
+        <action
+            android:id="@+id/to_calendarDayDialog"
+            app:destination="@id/calendarDayDialog" />
+        <action
+            android:id="@+id/to_createProgramDialog"
+            app:destination="@id/createProgramDialog" />
+        <action
+            android:id="@+id/to_chooseProgramDayFragment"
+            app:destination="@id/programDaysFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTrainingDialog"
+        android:name="com.iakull.fithelper.ui.home.trainings.create_training.CreateTrainingDialog"
+        android:label="@string/training_parameters"
+        tools:layout="@layout/dialog_create_training">
+        <action
+            android:id="@+id/to_exercisesFragment"
+            app:destination="@id/trainingExercisesFragment"
+            app:popUpTo="@+id/homeFragment" />
+        <action
+            android:id="@+id/to_chooseProgramFragment"
+            app:destination="@id/chooseProgramFragment">
+            <argument
+                android:name="toChooseProgramDay"
+                android:defaultValue="true" />
+            <argument
+                android:name="publishProgram"
+                android:defaultValue="false" />
+        </action>
+        <argument
+            android:name="date"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseProgramFragment"
+        android:name="com.iakull.fithelper.ui.common.choose_program.ChooseProgramFragment"
+        android:label="@string/chooseProgram"
+        tools:layout="@layout/fragment_choose_program">
+        <argument
+            android:name="toChooseProgramDay"
+            app:argType="boolean" />
+        <argument
+            android:name="publishProgram"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/to_chooseProgramDayFragment"
+            app:destination="@id/chooseProgramDayFragment"
+            app:popUpTo="@+id/createTrainingDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/chooseProgramDayFragment"
+        android:name="com.iakull.fithelper.ui.home.trainings.choose_program_day.ChooseProgramDayFragment"
+        android:label="@string/chooseProgramDay"
+        tools:layout="@layout/fragment_choose_program_day">
+        <argument
+            android:name="programId"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingExercisesFragment"
+        android:name="com.iakull.fithelper.ui.home.trainings.exercises.TrainingExercisesFragment"
+        android:label="@string/training_session"
+        tools:layout="@layout/fragment_program_day_exercises">
+        <argument
+            android:name="trainingId"
+            app:argType="string" />
+        <argument
+            android:name="trainingIsRunning"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/to_trainingSetsFragment"
+            app:destination="@id/trainingSetsFragment" />
+        <action
+            android:id="@+id/to_exercisesFragment2"
+            app:destination="@id/exercisesFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/exercisesFragment2"
+        android:name="com.iakull.fithelper.ui.common.exercises.ExercisesFragment"
+        android:label="@string/exercises"
+        tools:layout="@layout/fragment_exercises2">
+        <argument
+            android:name="num"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="programDayId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="trainingId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+
+
+    <fragment
+        android:id="@+id/exercisesFragment"
+        android:name="com.iakull.fithelper.ui.common.exercises.ExercisesFragment"
+        android:label="@string/exercises"
+        tools:layout="@layout/fragment_exercises">
+        <argument
+            android:name="num"
+            android:defaultValue="-1"
+            app:argType="integer" />
+        <argument
+            android:name="programDayId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="trainingId"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/trainingSetsFragment"
+        android:name="com.iakull.fithelper.ui.home.trainings.training_sets.TrainingSetsFragment"
+        android:label="@string/sets"
+        tools:layout="@layout/fragment_training_sets">
+        <argument
+            android:name="trainingExerciseId"
+            app:argType="string" />
+        <action
+            android:id="@+id/to_addSetDialog"
+            app:destination="@id/addSetDialog" />
+    </fragment>
+    <dialog
+        android:id="@+id/addSetDialog"
+        android:name="com.iakull.fithelper.ui.home.trainings.add_training_set.AddTrainingSetDialog"
+        tools:layout="@layout/dialog_add_training_set">
+        <argument
+            android:name="trainingExerciseId"
+            app:argType="string" />
+        <argument
+            android:name="setId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="weight"
+            app:argType="integer" />
+        <argument
+            android:name="reps"
+            app:argType="integer" />
+        <argument
+            android:name="time"
+            app:argType="integer" />
+        <argument
+            android:name="distance"
+            app:argType="integer" />
+    </dialog>
+    <dialog
+        android:id="@+id/calendarDayDialog"
+        android:name="com.iakull.fithelper.ui.home.calendar_day.CalendarDayDialog"
+        tools:layout="@layout/dialog_calendar_day">
+        <action
+            android:id="@+id/to_trainingExercisesFragment"
+            app:destination="@id/trainingExercisesFragment"
+            app:popUpTo="@+id/homeFragment" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <action
+            android:id="@+id/to_createTrainingDialog"
+            app:destination="@id/createTrainingDialog"
+            app:popUpTo="@+id/homeFragment" />
+    </dialog>
+    <dialog
+        android:id="@+id/createProgramDialog"
+        android:name="com.iakull.fithelper.ui.home.programs.create_program.CreateProgramDialog"
+        android:label="Тренировочная программа"
+        tools:layout="@layout/dialog_create_program">
+        <action
+            android:id="@+id/to_programDaysFragment"
+            app:destination="@id/programDaysFragment"
+            app:popUpTo="@+id/homeFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/programDaysFragment"
+        android:name="com.iakull.fithelper.ui.home.programs.program_days.ProgramDaysFragment"
+        android:label="@string/program_days"
+        tools:layout="@layout/fragment_program_days">
+        <argument
+            android:name="programId"
+            app:argType="string" />
+        <action
+            android:id="@+id/to_createProgramDayDialog"
+            app:destination="@id/createProgramDayDialog" />
+        <action
+            android:id="@+id/to_programDayExercisesFragment"
+            app:destination="@id/programDayExercisesFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/createProgramDayDialog"
+        android:name="com.iakull.fithelper.ui.home.programs.create_program_day.CreateProgramDayDialog"
+        android:label="CreateProgramDayDialog"
+        tools:layout="@layout/dialog_create_program_day">
+        <argument
+            android:name="num"
+            app:argType="integer" />
+        <argument
+            android:name="programId"
+            app:argType="string" />
+        <action
+            android:id="@+id/to_programDayExercisesFragment"
+            app:destination="@id/programDayExercisesFragment"
+            app:popUpTo="@+id/programDaysFragment" />
+    </dialog>
+    <fragment
+        android:id="@+id/programDayExercisesFragment"
+        android:name="com.iakull.fithelper.ui.home.programs.exercises.ProgramDayExercisesFragment"
+        tools:layout="@layout/fragment_program_day_exercises">
+        <argument
+            android:name="programDayId"
+            app:argType="string" />
+        <action
+            android:id="@+id/to_exercisesFragment"
+            app:destination="@id/exercisesFragment" />
+    </fragment>
+</navigation>

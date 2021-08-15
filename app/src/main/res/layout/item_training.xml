@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.iakull.fithelper.binding.Converter" />
+
+        <variable
+            name="training"
+            type="com.iakull.fithelper.data.relation.DetailedTraining" />
+    </data>
+
+    <LinearLayout
+        style="@style/HorizontalListItem"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/titleTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{training.programDayName +` `+ training.programName}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2"
+                app:invisibleUnless="@{training.programDayName != null}"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="День №1 Программа" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{`Длительность: ` + Converter.secondsToTimeFormat(training.duration)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:goneUnless="@{training.duration != null}"
+            tools:text="Длительность: 1:05" />
+
+    </LinearLayout>
+
+</layout>

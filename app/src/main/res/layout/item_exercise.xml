@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.iakull.fithelper.ui.common.exercises.ExercisesViewModel" />
+
+        <variable
+            name="exercise"
+            type="com.iakull.fithelper.data.model.Exercise" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:background="@drawable/background_rounded"
+        android:paddingStart="@dimen/list_item_horizontal_padding"
+        android:paddingTop="@dimen/list_item_vertical_padding"
+        android:paddingEnd="@dimen/list_item_horizontal_padding"
+        android:paddingBottom="@dimen/list_item_vertical_padding">
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            app:cardCornerRadius="@dimen/card_corner_radius_small">
+
+            <ImageView
+                android:id="@+id/exercise_image"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:imageUrl="@{exercise.imageUrl}"
+                tools:src="@drawable/ic_fitness_center" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/exercise_name"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:lines="2"
+            android:paddingStart="?android:attr/listPreferredItemPaddingLeft"
+            android:paddingEnd="?android:attr/listPreferredItemPaddingRight"
+            android:text="@{exercise.name}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            android:textColor="@color/white"
+            tools:text="Упражнение" />
+
+        <ImageView
+            style="@style/IconButton"
+            android:layout_gravity="center_vertical"
+            android:onClick="@{() -> vm.setFavorite(exercise)}"
+            android:src="@{exercise.favorite ? @drawable/ic_favorite : @drawable/ic_favorite_border}"
+            android:tint="@{exercise.favorite ? @color/red500 : @color/grey500}"
+            tools:src="@drawable/ic_favorite"
+            tools:tint="@color/red500" />
+
+    </LinearLayout>
+
+</layout>

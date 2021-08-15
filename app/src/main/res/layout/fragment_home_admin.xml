@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.iakull.fithelper.ui.guide.SearchViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/frame_padding">
+
+            <TextView
+                android:id="@+id/peoplesLabel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:gravity="center_vertical"
+                android:padding="@dimen/icon_button_padding"
+                android:text="@string/people"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/peoplesRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/peoplesLabel"
+                tools:listitem="@layout/item_user_mini" />
+
+            <TextView
+                android:id="@+id/exercisesLabel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:gravity="center_vertical"
+                android:padding="@dimen/icon_button_padding"
+                android:text="@string/exercises"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintTop_toBottomOf="@id/peoplesRV" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/exercisesRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/exercisesLabel"
+                tools:listitem="@layout/item_exercise_mini" />
+
+            <TextView
+                android:id="@+id/programsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:drawableEnd="@drawable/ic_arrow_forward"
+                android:gravity="center_vertical"
+                android:padding="@dimen/icon_button_padding"
+                android:text="@string/training_programs"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintTop_toBottomOf="@id/exercisesRV" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/programsRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/programsLabel"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_program" />
+
+            <TextView
+                android:id="@+id/postsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:gravity="center_vertical"
+                android:padding="@dimen/icon_button_padding"
+                android:text="@string/popular_publications"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintTop_toBottomOf="@id/programsRV" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/postsRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/postsLabel"
+                tools:listitem="@layout/item_post" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

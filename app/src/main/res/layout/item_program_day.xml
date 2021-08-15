@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="day"
+            type="com.iakull.fithelper.data.model.ProgramDay" />
+    </data>
+
+    <LinearLayout
+        style="@style/HorizontalListItem"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{day.name}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            tools:text="@string/name" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{day.description}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            tools:text="@string/description" />
+
+    </LinearLayout>
+
+</layout>

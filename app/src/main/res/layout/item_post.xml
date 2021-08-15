@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.iakull.fithelper.binding.Converter" />
+
+        <variable
+            name="sharedVM"
+            type="com.iakull.fithelper.ui.SharedViewModel" />
+
+        <variable
+            name="post"
+            type="com.iakull.fithelper.data.model.Post" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:padding="@dimen/frame_padding">
+
+        <ImageView
+            android:id="@+id/authorPhoto"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_baseline_account_circle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/frame_padding"
+            android:text="@{post.authorName}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:layout_constraintBottom_toTopOf="@id/timestamp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/authorPhoto"
+            app:layout_constraintTop_toTopOf="@id/authorPhoto"
+            tools:text="@tools:sample/full_names" />
+
+        <TextView
+            android:id="@+id/timestamp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/frame_padding"
+            android:text="@{Converter.dateToRelativeTimeSpan(post.timestamp)}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            app:layout_constraintBottom_toBottomOf="@id/authorPhoto"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/authorPhoto"
+            app:layout_constraintTop_toBottomOf="@id/author"
+            tools:text="2 часа назад" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:text="@{post.title}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+            app:goneUnless="@{post.title != null}"
+            app:layout_constraintTop_toBottomOf="@id/authorPhoto"
+            tools:text="Заголовок" />
+
+        <TextView
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:paddingBottom="4dp"
+            android:text="@{post.content}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
+            app:goneUnless="@{post.content != null}"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="Содержание" />
+
+
+        <LinearLayout
+            android:id="@+id/program"
+            style="@style/HorizontalListItem"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:goneUnless="@{post.program != null}"
+            app:layout_constraintTop_toBottomOf="@id/content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{post.program.name}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
+                tools:text="Название программы" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{post.program.description}"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+                tools:text="Описание" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/likeBtn"
+            style="@style/IconButton"
+            android:layout_width="84dp"
+            android:drawableStart="@{post.likes.contains(sharedVM.user.id) ? @drawable/ic_favorite : @drawable/ic_favorite_border}"
+            android:text="@{``+ post.likes.size()}"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/program"
+            tools:drawableStart="@drawable/ic_favorite_border"
+            tools:text="100" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

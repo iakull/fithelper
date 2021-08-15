@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.iakull.fithelper.binding.Converter" />
+
+        <variable
+            name="vm"
+            type="com.iakull.fithelper.ui.home.trainings.add_training_set.AddTrainingSetViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/frame_padding">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:goneUnless="@{vm.weight != null}">
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.decreaseWeight()}"
+                android:src="@drawable/ic_remove" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/weight_kg">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/weightET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:text="@={Converter.intToString(vm.weight)}"
+                    app:notEmpty="@{true}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.increaseWeight()}"
+                android:src="@drawable/ic_add" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:goneUnless="@{vm.reps != null}">
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.decreaseReps()}"
+                android:src="@drawable/ic_remove" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/reps">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/repsET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:text="@={Converter.intToString(vm.reps)}"
+                    app:notEmpty="@{true}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.increaseReps()}"
+                android:src="@drawable/ic_add" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:goneUnless="@{vm.time != null}">
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.decreaseTime()}"
+                android:src="@drawable/ic_remove" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/time_sec">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/timeET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:text="@={Converter.intToString(vm.time)}"
+                    app:notEmpty="@{true}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.increaseTime()}"
+                android:src="@drawable/ic_add" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:goneUnless="@{vm.distance != null}">
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.decreaseDistance()}"
+                android:src="@drawable/ic_remove" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/distance_metres">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/distanceET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:selectAllOnFocus="true"
+                    android:text="@={Converter.intToString(vm.distance)}"
+                    app:notEmpty="@{true}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <ImageView
+                style="@style/IconButton"
+                android:layout_gravity="center_vertical"
+                android:onClick="@{() -> vm.increaseDistance()}"
+                android:src="@drawable/ic_add" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:onClick="@{() -> vm.submit()}"
+            android:text="@{vm.trainingSetId == null ? @string/add_set : @string/save_changes}"
+            app:cornerRadius="16dp"
+            tools:text="@string/add_set" />
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/profile">
+        <menu>
+            <item
+                android:id="@+id/editProfile"
+                android:checkable="false"
+                android:icon="@drawable/ic_edit"
+                android:title="@string/edit_profile"
+                android:visible="false" />
+            <item
+                android:id="@+id/editPass"
+                android:checkable="false"
+                android:icon="@drawable/ic_edit"
+                android:title="@string/change_pass"
+                android:visible="false" />
+            <item
+                android:id="@+id/signInSignOut"
+                android:checkable="false"
+                android:icon="@drawable/ic_baseline_account_circle"
+                android:title="@string/sign_in" />
+        </menu>
+    </item>
+
+    <item android:title="@string/settings">
+        <menu>
+            <item
+                android:id="@+id/timer"
+                android:checkable="false"
+                android:icon="@drawable/ic_timer"
+                android:title="@string/timer"
+                android:visible="false" />
+            <item
+                android:id="@+id/darkTheme"
+                android:checkable="false"
+                android:icon="@drawable/ic_brightness_2"
+                android:title="@string/darkTheme" />
+        </menu>
+    </item>
+
+    <item android:title="@string/other">
+        <menu>
+            <item
+                android:id="@+id/info"
+                android:checkable="false"
+                android:icon="@drawable/ic_info"
+                android:title="@string/about" />
+        </menu>
+    </item>
+
+</menu>

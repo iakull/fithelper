@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feed"
+    app:startDestination="@id/feedFragment">
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.iakull.fithelper.di.feed.FeedFragment"
+        android:label="@string/subscriptions"
+        tools:layout="@layout/fragment_feed">
+        <action
+            android:id="@+id/to_createPostFragment"
+            app:destination="@id/create_post" />
+        <action
+            android:id="@+id/to_publicProgramDaysFragment"
+            app:destination="@id/public_program">
+            <argument
+                android:name="programId"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <include app:graph="@navigation/create_post" />
+    <include app:graph="@navigation/public_program" />
+</navigation>

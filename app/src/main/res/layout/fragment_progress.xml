@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.iakull.fithelper.ui.home.HomeViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:overScrollMode="never">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/frame_padding">
+
+            <LinearLayout
+                android:id="@+id/calendarHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/prevMonthButton"
+                    style="@style/IconButton"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_left" />
+
+                <TextView
+                    android:id="@+id/dateLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                    tools:text="@string/date_sample" />
+
+                <ImageView
+                    android:id="@+id/nextMonthButton"
+                    style="@style/IconButton"
+                    app:srcCompat="@drawable/ic_keyboard_arrow_right" />
+            </LinearLayout>
+
+            <com.kizitonwose.calendarview.CalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="match_parent"
+                android:layout_height="320dp"
+                app:cv_dayViewResource="@layout/item_calendar_day"
+                app:cv_monthHeaderResource="@layout/view_calendar_header"
+                app:cv_orientation="horizontal"
+                app:cv_outDateStyle="endOfGrid"
+                app:cv_scrollMode="paged"
+                app:layout_constraintTop_toBottomOf="@id/calendarHeader" />
+
+            <LinearLayout
+                android:id="@+id/buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:baselineAligned="false"
+                app:layout_constraintTop_toBottomOf="@id/calendarView">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <Button
+                        android:id="@+id/startTrainingButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_baseline_play_circle_filled"
+                        android:text="@string/startTrainingButton"
+                        app:cornerRadius="16dp"
+                        app:elevation="0dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/programsLabel"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:drawableEnd="@drawable/ic_add"
+                android:gravity="center_vertical"
+                android:padding="@dimen/icon_button_padding"
+                android:text="@string/training_programs"
+                android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+                app:layout_constraintTop_toBottomOf="@id/buttons" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/programsRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/programsLabel"
+                app:spanCount="2"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_program" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>
